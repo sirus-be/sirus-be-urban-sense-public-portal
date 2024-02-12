@@ -1,0 +1,9 @@
+﻿@page "/manual/{ManualTitle}"
+@attribute [Authorize]
+
+<iframe src="manuals/@(ManualTitle).pdf" style="width: 100%;height: 850px;border: none;" frameborder="0" allowfullscreen></iframe>
+
+@code {
+    [Parameter]
+    public string ManualTitle { get; set; }
+}

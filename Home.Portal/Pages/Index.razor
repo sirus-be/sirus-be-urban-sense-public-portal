@@ -1,0 +1,190 @@
+﻿@page "/"
+
+@using Radzen.Blazor
+@using Radzen
+@using Home.Portal
+
+<style>
+    .help-link {
+        position: absolute;
+        bottom: 0;
+        right: 15px;
+        color: #3a4759;
+    }
+</style>
+<AuthorizeView>
+    <Authorized>
+        <div Style="color: #3a4759;">
+            <img src="images/Urban-Sense-Logo.png" width="100" style="position:fixed; bottom:0; margin-bottom:2em" />
+            <div style="margin-bottom:2em">
+                @((MarkupString)Message)
+            </div>
+            <h2>Componenten</h2>
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    <RadzenCard Style="margin-bottom: 20px;">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3">
+                                <RadzenIcon Icon="archive" Style="font-size: 4em;" /><br />
+                                <RadzenLink Path="@Config.Value.FactStore.Url" Text="@Config.Value.FactStore.Title" target="_self" />
+                            </div>
+                            <div class="col-sm-12 col-md-9">
+                                <p>@((MarkupString)Config.Value.FactStore.Description)</p>
+                                <RadzenLink Icon="help" class="help-link" Path="/manual/FactStoreV1" target="_self" />
+                            </div>
+                        </div>
+                    </RadzenCard>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <RadzenCard Style="margin-bottom: 20px;">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3">
+                                <RadzenIcon Icon="topic" Style="font-size: 4em;" /><br />
+                                <RadzenLink Path="@Config.Value.DataCatalog.Url" Text="@Config.Value.DataCatalog.Title" target="_self" />
+                            </div>
+                            <div class="col-sm-12 col-md-9">
+                                <p>@((MarkupString)Config.Value.DataCatalog.Description)</p>
+                                <RadzenLink Icon="help" class="help-link" Path="/manual/DataCatalogV1" target="_self" />
+                            </div>
+                        </div>
+                    </RadzenCard>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    <RadzenCard Style="margin-bottom: 20px;">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3">
+                                <RadzenIcon Icon="edit" Style="font-size: 4em;" /><br />
+                                <RadzenLink Path="@Config.Value.SupplierForm.Url" Text="@Config.Value.SupplierForm.Title" target="_self" />
+                            </div>
+                            <div class="col-sm-12 col-md-9">
+                                <p>@((MarkupString)Config.Value.SupplierForm.Description)</p>
+@*                                <RadzenLink Icon="help" class="help-link" Path="" target="_self" />
+*@                            </div>
+                        </div>
+                    </RadzenCard>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <RadzenCard Style="margin-bottom: 20px;">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3">
+                                <RadzenIcon Icon="graphic_eq" Style="font-size: 4em;" /><br />
+                                <RadzenLink Path="@Config.Value.ContextBroker.Url" Text="@Config.Value.ContextBroker.Title" target="_blank" />
+                            </div>
+                            <div class="col-sm-12 col-md-9">
+                                <p>@((MarkupString)Config.Value.ContextBroker.Description)</p>
+                                <RadzenLink Icon="help" class="help-link" Path="/manual/ContextBrokerV1" target="_self" />
+                            </div>
+                        </div>
+                    </RadzenCard>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    <RadzenCard Style="margin-bottom: 20px;">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3">
+                                <RadzenIcon Icon="waves" Style="font-size: 4em;" /><br />
+                                <RadzenLink Path="@Config.Value.DataLake.Url" Text="@Config.Value.DataLake.Title" target="_blank" />
+                            </div>
+                            <div class="col-sm-12 col-md-9">
+                                <p>@((MarkupString)Config.Value.DataLake.Description)</p>
+@*                                <RadzenLink Icon="help" class="help-link" Path="" target="_self" />
+*@                            </div>
+                        </div>
+                    </RadzenCard>
+                </div>
+                @if (IsAdmin)
+                {
+                    <div class="col-md-12 col-lg-6">
+                        <RadzenCard Style="margin-bottom: 20px;">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-3">
+                                    <RadzenIcon Icon="legend_toggle" Style="font-size: 4em;" /><br />
+                                    <RadzenLink Path="@Config.Value.Platform.Url" Text="@Config.Value.Platform.Title" target="_blank" />
+                                </div>
+                                <div class="col-sm-12 col-md-9">
+                                    <p>@((MarkupString)Config.Value.Platform.Description)</p>
+@*                                    <RadzenLink Icon="help" class="help-link" Path="" target="_self" />
+*@                                </div>
+                            </div>
+                        </RadzenCard>
+                    </div>
+                }
+            </div>
+            @if (IsAdmin)
+            {
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <RadzenCard Style="margin-bottom: 20px;">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-3">
+                                    <RadzenIcon Icon="call_merge" Style="font-size: 4em;" /><br />
+                                    <RadzenLink Path="@Config.Value.NiFi.Url" Text="@Config.Value.NiFi.Title" target="_blank" />
+                                </div>
+                                <div class="col-sm-12 col-md-9">
+                                    <p>@((MarkupString)Config.Value.NiFi.Description)</p>
+@*                                    <RadzenLink Icon="help" class="help-link" Path="" target="_self" />
+*@                                </div>
+                            </div>
+                        </RadzenCard>
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        <RadzenCard Style="margin-bottom: 20px;">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-3">
+                                    <RadzenIcon Icon="update" Style="font-size: 4em;" /><br />
+                                    <RadzenLink Path="@Config.Value.BackgroundJobs.Url" Text="@Config.Value.BackgroundJobs.Title" target="_blank" />
+                                </div>
+                                <div class="col-sm-12 col-md-9">
+                                    <p>@((MarkupString)Config.Value.BackgroundJobs.Description)</p>
+@*                                    <RadzenLink Icon="help" class="help-link" Path="" target="_self" />
+*@                                </div>
+                            </div>
+                        </RadzenCard>
+                    </div>
+                </div>
+            }
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <div style="text-align:center">
+            <p style="margin-bottom:2em">
+                Welkom, gelieve eerst in te loggen.
+            </p>
+            <div style="margin-bottom:4em">
+                <img src="images/Urban-Sense-Logo.png" width="100" />
+            </div>
+            <div>
+                <img src="images/skyline.png" style="max-width: 100%; height: auto;" />
+            </div>
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private bool IsAdmin = false;
+    private string Message = "Loading";
+    private string Picture = "";
+
+    [CascadingParameter]
+    Task<AuthenticationState> authenticationStateTask { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = (await authenticationStateTask).User;
+
+        @if (user.Identity.IsAuthenticated)
+        {
+            var userName = user.Claims
+                        .Where(c => c.Type.Equals("preferred_username"))
+                        .Select(c => c.Value)
+                        .FirstOrDefault() ?? string.Empty;
+            IsAdmin = user.IsInRole(Roles.SuperAdmin);
+            Message = $"Welkom <b>{userName}</b> op het Urban Sense portaal";
+        }
+
+        await base.OnInitializedAsync();
+    }
+}
